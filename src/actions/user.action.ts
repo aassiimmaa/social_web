@@ -50,4 +50,12 @@ const getUserByClerkId = async (clerkId: string) => {
   })
 }
 
-export { syncUser, getUserByClerkId }
+const getDbUserId = async () => {
+  const { userId: clerkId } = await auth()
+  if (!clerkId) throw new Error('Unauthorized')
+  const user = await getUserByClerkId(clerkId)
+  if (!user) throw new Error('User not found')
+  return user.id
+}
+
+export { syncUser, getUserByClerkId, getDbUserId }
