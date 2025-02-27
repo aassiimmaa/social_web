@@ -1,10 +1,9 @@
 'use server'
 
 import { auth, currentUser } from '@clerk/nextjs/server'
-import React from 'react'
 import prisma from '~/lib/prisma'
 
-async function syncUser() {
+const syncUser = async () => {
   try {
     const { userId } = await auth()
     const user = await currentUser()
@@ -34,4 +33,21 @@ async function syncUser() {
   }
 }
 
-export default syncUser
+const getUserByClerkId = async (clerkId: string) => {
+  return prisma.user.findUnique({
+    where: {
+      clerkId
+    },
+    include: {
+      _count: {
+        select: {
+          followers: true,
+          following: true,
+          posts: true
+        }
+      }
+    }
+  })
+}
+
+export { syncUser, getUserByClerkId }
