@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 import DesktopNavbar from './DesktopNavbar'
+import MobileNavbar from './MobileNavbar'
 
 export const NavBar = () => {
   return (
@@ -17,6 +18,7 @@ export const NavBar = () => {
           </div>
 
           <DesktopNavbar />
+          <MobileNavbar />
         </div>
       </div>
     </nav>
