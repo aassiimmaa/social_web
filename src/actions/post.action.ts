@@ -8,7 +8,7 @@ const createPost = async (content: string, image: string) => {
   try {
     const userId = await getDbUserId()
 
-    if (!userId) return
+    if (!userId) return { success: false, message: 'Unauthorized' }
 
     const post = await prisma.post.create({
       data: {
