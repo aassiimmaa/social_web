@@ -20,7 +20,8 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: 'Socially',
-  description: 'social media platform where everyone can share anything to each other'
+  description:
+    'social media platform where everyone can share anything to each other'
 }
 
 export default function RootLayout({
